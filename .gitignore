@@ -1,5 +1,8 @@
 *target*
+*.metadata
+*.idea
 .classpath
 .settings/
 *.loadpath
 *.project
+.Exercite-1-sql_12_2021
