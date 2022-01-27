@@ -3,6 +3,8 @@ package com.nguyenvukha.controller;
 import java.util.List;
 
 import com.nguyenvukha.model.*;
+import com.nguyenvukha.model.input.BuildingSearchInput;
+import com.nguyenvukha.model.output.BuildingSearchOutput;
 import com.nguyenvukha.service.IBuildingService;
 import com.nguyenvukha.service.impl.BuildingService;
 
@@ -13,7 +15,7 @@ public class BuildingController {
 		buildingService = new BuildingService();
 	}
 	
-	public List<BuildingModel> getAllBuilding(String name, int floorArena, int numberOfBasement, String street) {
-		return buildingService.getAllBuilding(name, floorArena, numberOfBasement, street);
+	public List<BuildingSearchOutput> showAllBuilding(BuildingSearchInput input) {
+		return buildingService.getAllBuilding(input.getName(), input.getFloorArena(), input.getNumberOfBasement(), input.getStreet());
 	}
 }

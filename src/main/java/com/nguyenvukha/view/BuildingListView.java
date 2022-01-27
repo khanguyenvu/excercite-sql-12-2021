@@ -1,10 +1,10 @@
 package com.nguyenvukha.view;
 
 import com.nguyenvukha.controller.BuildingController;
-import com.nguyenvukha.model.*;
+import com.nguyenvukha.model.input.BuildingSearchInput;
+import com.nguyenvukha.model.output.BuildingSearchOutput;
 import com.nguyenvukha.ultils.NumberUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,12 +22,17 @@ public class BuildingListView {
 		String street = sc.nextLine();
 		
 		BuildingController buildingController = new BuildingController();
-		
+		BuildingSearchInput input = new BuildingSearchInput(name, floorArena, street, numberOfBasement);
+		List<BuildingSearchOutput> buildings = buildingController.showAllBuilding(input);
+
 		System.out.println();
-		for(BuildingModel buildingModel : buildingController.getAllBuilding(name, floorArena, numberOfBasement, street)) {
-			System.out.println("--------------------------" + buildingModel.getName() + "--------------------------");
-			System.out.println(buildingModel);
-			System.out.println();
+		for(BuildingSearchOutput building : buildings) {
+			System.out.println("--------------------------" + building.getName() + "--------------------------");
+			System.out.println("Tên tòa nhà: " + building.getName());
+			System.out.println("Diện tích sàn: " + building.getFloorArena());
+			System.out.println("Số tầng hầm: " + building.getNumberOfBasement());
+			System.out.println("Đường: " + building.getStreet());
+			System.out.println("Loại tòa nhà: " + building.getTypes());
 		}
 	}
 }
