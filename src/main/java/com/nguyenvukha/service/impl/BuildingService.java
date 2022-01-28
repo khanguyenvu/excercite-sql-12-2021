@@ -30,20 +30,12 @@ public class BuildingService implements IBuildingService {
 	
 	private String convertTypes(String types) {
 		StringBuilder result = new StringBuilder();
-		
-		int count = 0;
-		if(types.indexOf(BuildingTypeConstant.TANG_TRET) != -1) {
-			result.append(BuildingTypeUtils.getBuildingType(BuildingTypeConstant.TANG_TRET));
-			count++;
+		String[] arr = types.split(",");
+		for(String type : arr) {
+			result.append(BuildingTypeUtils.getBuildingType(type) + ", ");
 		}
-		if(types.indexOf(BuildingTypeConstant.NGUYEN_CAN) != -1) {
-			if(count > 0) result.append(", ");
-			result.append(BuildingTypeUtils.getBuildingType(BuildingTypeConstant.NGUYEN_CAN));
-			count++;
-		}
-		if(types.indexOf(BuildingTypeConstant.NOI_THAT) != -1) {
-			if(count > 0) result.append(", ");
-			result.append(BuildingTypeUtils.getBuildingType(BuildingTypeConstant.NOI_THAT));
+		if(arr.length > 0) {
+			result.deleteCharAt(result.length() - 2);
 		}
 		return result.toString();
 	}
